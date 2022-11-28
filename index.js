@@ -1,6 +1,6 @@
 let players = [{name: 'benit', points: 0}, {name:'tincho', points: 0}, {name:'negro', points: 0}, {name:'gringo', points: 0}, {name:'player', points: 0}];
 
-const calcularPuntos = () =>{
+const calcularPuntos = () => {
     fetch('https://worldcupjson.net/matches')
     .then((res) => res.json())
     .then((data) => {
@@ -51,8 +51,31 @@ const calcularPuntos = () =>{
     });
 }
 
+const mostrarInfo = () => {
+    $("#cardlastmatch").hide();
+    fetch('https://worldcupjson.net/matches')
+    .then((res) => res.json())
+    .then((data) => {
+        let partidos = [];
+        data.forEach(d => {
+            if(d.status==='completed'){
+                partidos.push(d);
+            }
+        });
+        let ultimo_partido = Math.max(...partidos.map(o => o.id));
+        console.log(ultimo_partido);
+        partidos.forEach(p => {
+            if(p.id===ultimo_partido){
+                $("#lastmatch").html(p.home_team.country+" - "+p.home_team.goals+"<br>"+p.away_team.country+" - "+p.away_team.goals);
+                $("#cardlastmatch").show();
+            }
+        });
+    });
+}
+
 $( document ).ready(function() {
     calcularPuntos();
+    mostrarInfo();
 });
 
 let benit=[

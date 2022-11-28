@@ -52,7 +52,6 @@ const calcularPuntos = () => {
 }
 
 const mostrarInfo = () => {
-    $("#cardlastmatch").hide();
     fetch('https://worldcupjson.net/matches')
     .then((res) => res.json())
     .then((data) => {
@@ -74,6 +73,7 @@ const mostrarInfo = () => {
 }
 
 $( document ).ready(function() {
+    $("#cardlastmatch").hide();
     calcularPuntos();
     mostrarInfo();
 });

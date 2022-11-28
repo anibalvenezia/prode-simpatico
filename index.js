@@ -60,9 +60,12 @@ const mostrarInfo = () => {
             if(d.status==='completed'){
                 partidos.push(d);
             }
+            if(d.status==='in_progress'){
+                $("#currentmatch").html(d.home_team.country+" - "+d.home_team.goals+"<br>"+d.away_team.country+" - "+d.away_team.goals);
+                $("#cardcurrentmatch").show();
+            }
         });
         let ultimo_partido = Math.max(...partidos.map(o => o.id));
-        console.log(ultimo_partido);
         partidos.forEach(p => {
             if(p.id===ultimo_partido){
                 $("#lastmatch").html(p.home_team.country+" - "+p.home_team.goals+"<br>"+p.away_team.country+" - "+p.away_team.goals);
@@ -74,6 +77,7 @@ const mostrarInfo = () => {
 
 $( document ).ready(function() {
     $("#cardlastmatch").hide();
+    $("#cardcurrentmatch").hide();
     calcularPuntos();
     mostrarInfo();
 });

@@ -39,7 +39,9 @@ const calcularPuntos = () => {
           // BENIT
           benit[d.id - 1].resultado2
             ? tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=benit-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   benit[d.id - 1].resultado +
                   " (" +
                   benit[d.id - 1].resultado2 +
@@ -47,7 +49,9 @@ const calcularPuntos = () => {
                   "</td>"
               )
             : tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=benit-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   benit[d.id - 1].resultado +
                   "</td>"
               );
@@ -55,7 +59,9 @@ const calcularPuntos = () => {
           // TINCHO
           tincho[d.id - 1].resultado2
             ? tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=tincho-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   tincho[d.id - 1].resultado +
                   " (" +
                   tincho[d.id - 1].resultado2 +
@@ -63,7 +69,9 @@ const calcularPuntos = () => {
                   "</td>"
               )
             : tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=tincho-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   tincho[d.id - 1].resultado +
                   "</td>"
               );
@@ -71,7 +79,9 @@ const calcularPuntos = () => {
           // NEGRO
           negro[d.id - 1].resultado2
             ? tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=negro-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   negro[d.id - 1].resultado +
                   " (" +
                   negro[d.id - 1].resultado2 +
@@ -79,7 +89,9 @@ const calcularPuntos = () => {
                   "</td>"
               )
             : tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=negro-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   negro[d.id - 1].resultado +
                   "</td>"
               );
@@ -87,7 +99,9 @@ const calcularPuntos = () => {
           // GRINGO
           gringo[d.id - 1].resultado2
             ? tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=gringo-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   gringo[d.id - 1].resultado +
                   " (" +
                   gringo[d.id - 1].resultado2 +
@@ -95,7 +109,9 @@ const calcularPuntos = () => {
                   "</td>"
               )
             : tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=gringo-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   gringo[d.id - 1].resultado +
                   "</td>"
               );
@@ -103,7 +119,9 @@ const calcularPuntos = () => {
           // PLAYER
           player[d.id - 1].resultado2
             ? tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=player-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   player[d.id - 1].resultado +
                   " (" +
                   player[d.id - 1].resultado2 +
@@ -111,7 +129,9 @@ const calcularPuntos = () => {
                   "</td>"
               )
             : tr.append(
-                "<td class='text-uppercase'>" +
+                "<td id=player-" +
+                  d.id +
+                  " class='text-uppercase'>" +
                   player[d.id - 1].resultado +
                   "</td>"
               );
@@ -120,38 +140,49 @@ const calcularPuntos = () => {
           if (
             resultado_partido === benit[d.id - 1].resultado ||
             resultado_partido === benit[d.id - 1].resultado2
-          )
+          ) {
+            $("#benit-" + d.id).addClass("bg-success");
             players.forEach((p) => {
               if (p.name === "benit") p.points++;
             });
+          }
+
           if (
             resultado_partido === tincho[d.id - 1].resultado ||
             resultado_partido === tincho[d.id - 1].resultado2
-          )
+          ) {
+            $("#tincho-" + d.id).addClass("bg-success");
             players.forEach((p) => {
               if (p.name === "tincho") p.points++;
             });
+          }
           if (
             resultado_partido === negro[d.id - 1].resultado ||
             resultado_partido === negro[d.id - 1].resultado2
-          )
+          ) {
+            $("#negro-" + d.id).addClass("bg-success");
             players.forEach((p) => {
               if (p.name === "negro") p.points++;
             });
+          }
           if (
             resultado_partido === gringo[d.id - 1].resultado ||
             resultado_partido === gringo[d.id - 1].resultado2
-          )
+          ) {
+            $("#gringo-" + d.id).addClass("bg-success");
             players.forEach((p) => {
               if (p.name === "gringo") p.points++;
             });
+          }
           if (
             resultado_partido === player[d.id - 1].resultado ||
             resultado_partido === player[d.id - 1].resultado2
-          )
+          ) {
+            $("#player-" + d.id).addClass("bg-success");
             players.forEach((p) => {
               if (p.name === "player") p.points++;
             });
+          }
         }
         if (d.status === "future_scheduled" && d.id < 49) {
           let tr = $("<tr class='table-secondary' />").appendTo(tbody_jugadas);

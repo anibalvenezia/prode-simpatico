@@ -10,6 +10,7 @@ const calcularPuntos = () => {
   fetch("https://worldcupjson.net/matches")
     .then((res) => res.json())
     .then((data) => {
+      let tbody_jugadas = $("#tabla-jugadas");
       data.forEach((d) => {
         let resultado_partido = "";
         if (d.status === "completed") {
@@ -17,6 +18,104 @@ const calcularPuntos = () => {
           if (d.winner_code === d.home_team_country) resultado_partido = "l";
           if (d.winner_code === d.away_team_country) resultado_partido = "v";
           if (d.winner_code === "Draw") resultado_partido = "e";
+          // Dibujo TABLA_JUGADAS
+          let tr = $("<tr class='table-success'/>").appendTo(tbody_jugadas);
+          tr.append("<td>" + d.id + "</td>"); // #
+          tr.append(
+            "<td class='text-uppercase'>" +
+              d.home_team_country +
+              ": " +
+              d.home_team.goals +
+              " - " +
+              d.away_team_country +
+              ": " +
+              d.away_team.goals +
+              "  [" +
+              resultado_partido +
+              "]" +
+              "</td>"
+          ); // partido
+
+          // BENIT
+          benit[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  benit[d.id - 1].resultado +
+                  " (" +
+                  benit[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  benit[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // TINCHO
+          tincho[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  tincho[d.id - 1].resultado +
+                  " (" +
+                  tincho[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  tincho[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // NEGRO
+          negro[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  negro[d.id - 1].resultado +
+                  " (" +
+                  negro[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  negro[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // GRINGO
+          gringo[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  gringo[d.id - 1].resultado +
+                  " (" +
+                  gringo[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  gringo[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // PLAYER
+          player[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  player[d.id - 1].resultado +
+                  " (" +
+                  player[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  player[d.id - 1].resultado +
+                  "</td>"
+              );
+
           // Comparo resultado con la apuesta de cada jugador
           if (
             resultado_partido === benit[d.id - 1].resultado ||
@@ -54,6 +153,97 @@ const calcularPuntos = () => {
               if (p.name === "player") p.points++;
             });
         }
+        if (d.status === "future_scheduled" && d.id < 49) {
+          let tr = $("<tr class='table-secondary' />").appendTo(tbody_jugadas);
+          tr.append("<td>" + d.id + "</td>"); // #
+          tr.append(
+            "<td class='text-uppercase'>" +
+              d.home_team_country +
+              " - " +
+              d.away_team_country +
+              "</td>"
+          ); // partido
+
+          // BENIT
+          benit[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  benit[d.id - 1].resultado +
+                  " (" +
+                  benit[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  benit[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // TINCHO
+          tincho[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  tincho[d.id - 1].resultado +
+                  " (" +
+                  tincho[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  tincho[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // NEGRO
+          negro[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  negro[d.id - 1].resultado +
+                  " (" +
+                  negro[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  negro[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // GRINGO
+          gringo[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  gringo[d.id - 1].resultado +
+                  " (" +
+                  gringo[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  gringo[d.id - 1].resultado +
+                  "</td>"
+              );
+
+          // PLAYER
+          player[d.id - 1].resultado2
+            ? tr.append(
+                "<td class='text-uppercase'>" +
+                  player[d.id - 1].resultado +
+                  " (" +
+                  player[d.id - 1].resultado2 +
+                  ")" +
+                  "</td>"
+              )
+            : tr.append(
+                "<td class='text-uppercase'>" +
+                  player[d.id - 1].resultado +
+                  "</td>"
+              );
+        }
       });
       //Dibujo la tabla
       let playersPoints = players.sort(function (a, b) {
@@ -63,8 +253,8 @@ const calcularPuntos = () => {
       let position = 1;
       playersPoints.forEach((f) => {
         let tr = $("<tr/>").appendTo(tbody);
-        let td = $('<th scope="row">' + position + "</th>").appendTo(tr);
-        tr.append("<td>" + f.name + "</td>");
+        tr.append("<td>" + position + "</td>");
+        tr.append("<td class='text-uppercase'>" + f.name + "</td>");
         tr.append("<td>" + f.points + "</td>");
         position++;
       });

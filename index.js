@@ -63,8 +63,9 @@ const calcularPuntos = () => {
       let position = 1;
       playersPoints.forEach((f) => {
         let tr = $("<tr/>").appendTo(tbody);
-        let td = $('<th scope="row">' + position + "</th>").appendTo(tr);
-        tr.append("<td>" + f.name + "</td>");
+        //let td = $('<th scope="row">' + position + "</th>").appendTo(tr);
+        tr.append('<td>' + position + '</td>');
+        tr.append("<td class='text-uppercase'>" + f.name + "</td>");
         tr.append("<td>" + f.points + "</td>");
         position++;
       });

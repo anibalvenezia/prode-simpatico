@@ -18,6 +18,7 @@ const calcularPuntos = () => {
           if (d.winner_code === d.home_team_country) resultado_partido = "l";
           if (d.winner_code === d.away_team_country) resultado_partido = "v";
           if (d.winner_code === "Draw") resultado_partido = "e";
+          if (d.id === 38) resultado_partido = "l";
           // Dibujo TABLA_JUGADAS
           let tr = $("<tr class='table-success'/>").appendTo(tbody_jugadas);
           tr.append("<td>" + d.id + "</td>"); // #

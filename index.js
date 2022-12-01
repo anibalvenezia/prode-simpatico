@@ -185,7 +185,7 @@ const calcularPuntos = () => {
             });
           }
         }
-        if (d.status === "future_scheduled" && d.status === "in_progress" && d.id < 49) {
+        if ((d.status === "future_scheduled" || d.status === "in_progress") && d.id < 49) {
           let tr = $("<tr class='table-secondary' />").appendTo(tbody_jugadas);
           tr.append("<td>" + d.id + "</td>"); // #
           tr.append(
